@@ -1,0 +1,18 @@
+[user]
+    name = Sergei Barbarash
+    email = sgt.sgt@gmail.com
+[color]
+    ui = auto
+[alias]
+    st = status -sb
+    ci = commit
+    co = checkout
+    br = branch
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	fl = log -u
+[github]
+    user = sgt
+[push]
+    default = simple
+[core]
+    safecrlf = true

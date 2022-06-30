@@ -19,12 +19,18 @@ require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'stsewd/gx-extended.vim',
+        'lewis6991/impatient.nvim',
         config = function()
-            if vim.fn.has('wsl') == 1 then
-                vim.g['gxext#opencmd'] = 'wslview'
-            end
-        end
+            require('impatient')
+        end,
+    }
+
+    use {
+        'puremourning/vimspector',
+        config = function()
+            vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
+            vim.cmd [[packadd vimspector]]
+        end,
     }
 
     use {
@@ -56,6 +62,21 @@ require('packer').startup(function(use)
         end,
     }
 
+    use {
+        'simrat39/rust-tools.nvim',
+        requires = {'neovim/nvim-lspconfig'},
+        config = function()
+            require('rust-tools').setup({});
+        end
+    }
+
+    -- use {
+    --     "folke/trouble.nvim",
+    --     requires = "kyazdani42/nvim-web-devicons",
+    --     config = function()
+    --         require("trouble").setup { }
+    --     end
+    -- }
     use {
         'williamboman/nvim-lsp-installer',
         requires = {
@@ -159,15 +180,6 @@ require('packer').startup(function(use)
     }
 
     use {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("trouble").setup { }
-        end
-    }
-
-
-    use {
         'mhinz/vim-startify',
         setup = function()
             vim.g.startify_fortune_use_unicode = 1
@@ -180,6 +192,7 @@ require('packer').startup(function(use)
         'machakann/vim-sandwich',
         'tpope/vim-fugitive',
         'tpope/vim-commentary',
+        'stsewd/gx-extended.vim',
         -- 'catppuccin/nvim', -- a theme to try
         -- 'simrat39/symbols-outline.nvim',
         -- 'folke/which-key.nvim',
@@ -192,22 +205,23 @@ require('packer').startup(function(use)
     -- Visuals --
     use 'kyazdani42/nvim-web-devicons'
 
+    --[[
     use {
         'Shatur/neovim-ayu',
         config = function()
             vim.cmd 'colorscheme ayu-mirage'
         end,
     }
+    -]]
 
     --[[
     use {
         'sonph/onehalf',
         rtp = '/vim',
         config = function()
-            vim.cmd 'colorscheme onehalfdark'
+            vim.cmd 'colorscheme onehalflight'
         end,
     }
-    --]]
 
     --[[
     use {
@@ -218,6 +232,14 @@ require('packer').startup(function(use)
         end
     }
     --]]
+
+    use {
+        'rafi/awesome-vim-colorschemes',
+        config = function()
+            vim.opt.background = 'light'
+            vim.cmd [[colorscheme onehalflight]]
+        end,
+    }
 
     use {
         'nvim-lualine/lualine.nvim',
